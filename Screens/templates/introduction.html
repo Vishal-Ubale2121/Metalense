@@ -1,0 +1,127 @@
+{% extends 'base-figma-1.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+<div class="alt-nav">
+    <div style="position: absolute;
+    left: 11.10%;
+    right: 38.75%;
+    top: 13.80%;
+    bottom: 88.89%;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 28px;
+    /* or 200% */
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #0E88AF;">
+        Objectives
+    </div>
+    <div style="position: absolute;
+    height: 26px;
+    left: 7.80%;
+    right: 38.75%;
+    top: 40%;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    /* or 117% */
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    /* Typography/On Surface/High Emphasis */
+    color: rgba(39, 41, 54, 0.85);">
+        <a href="#" onclick="history.back()"><img style="margin-right: -5px;" src="static/assets/img/Icon.png"/></a>
+        Client Details
+    </div>
+</div>
+<body style="background: linear-gradient(3.47deg, #590A42 13.28%, #66A9CD 91.28%);
+position: static;
+width: 1240px;
+overflow-x: hidden;
+margin-left: 10px;
+margin-top:-5px;
+height: 582px;">
+{% csrf_token %}
+<div class="introduction-out-box" style="height: 420px; margin-top: 6px; width: 750px; margin-left: -158px;">
+    <div>
+        <div style=" border-radius: 4px; width: 660px;; margin-top: 10px; height: 28px; margin-left: 25px; background-color: #590A42;">
+            <p style="color: white; text-align: center; font-size: 12px; font-weight: 600; padding:5px; font-family: 'Ubuntu';">Objective of this toolkit</p>
+        </div>
+        <div style="margin-top:6px; margin-left:28px; width: 578px;">
+            <p style="font-size:12px; font-weight: 500; font-family: 'Ubuntu';">This toolkit aims to provide banks and financial institutions with an understanding as to where they currently stand in terms of preparedness to complete the KYC & onboarding of metaverse customers.</p>
+        </div>
+        <div style="border-radius: 4px; width: 660px;; margin-top: -10px; height: 27px; margin-left: 25px; background-color: #590A42;">
+            <p style="color: white; text-align: center; font-size: 12px; font-weight: 600; padding:5px; font-family: 'Ubuntu';">How should this toolkit be used?</p>
+        </div>
+         <div style="margin-top:10px; margin-left:28px; width: 640px;">
+            <dl style="font-size:11px; font-weight: 400; font-family: 'Ubuntu';">
+                <dd style="margin-top: -3px;">Step 1: User should start first with the "Client Information" and enter the required information in the appropriate fields, and also specify the portfolio they wish to evaluate.</dd>
+                <dd style="margin-top: -3px;">Step 2: User should then shift to "Initial screening" sheet and answer all the questions there to determine whether they should proceed with this toolkit.</dd>
+                <dd style="margin-top: -3px;">Step 3: If the "Initial screening" sheet concludes that user should proceed with this toolkit, the user should shift to "Assessment Parameters" tab.</dd>
+                <dd style="margin-top: -3px;">Step 4: There are 4 themes in this toolkit, each representing one focus area on which the stakeholder has to evaluate themselves. All questions are mandatory.</dd>
+                <dd style="margin-top: -3px;">Step 5: The "Scoring guide" column in each sheet provides user with guidance on how to come up with the correct response based on their self-evaluation.</dd>
+                <dd style="margin-top: -3px;">Step 6: Based on the scores assigned for each question, an overall score for the specific theme is indicated at the bottom of the sheet.</dd>
+                <dd style="margin-top: -3px;">Step 7: Repeat the same set of actions for the remaining 3 themes.</dd>
+                <dd style="margin-top: -3px;">Step 8: After answering all the questions and assigning the scores, user has to click "Results" to move to the dashboard.</dd>
+                <dd style="margin-top: -4px;">Step 9: The dashboard will be automatically generated, based on which user can check their preparedness levels.</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="index-select-box2" style="height: 420px; margin-top: -150px; width: 520px; margin-left: 490.2px; overflow-x: hidden;">
+        <form method="POST" enctype="multipart/form-data" action="index">
+            {% csrf_token %}
+            <div class="float-child" style="width: 50%; float: left; padding: 20px; height: 420px;">
+                 <p style="font-size: 13px; font-family: 'Ubuntu'; font-weight: bold;">
+                    Client Name *
+                    <input type="text" placeholder="Client name" name="client_name" style="width: 220px; font-size: 12px; margin-top: 8px; height: 27px" required>
+                </p>
+                <p style="font-size: 13px; font-family: 'Ubuntu'; font-weight: bold;">
+                    Industry / Sector *
+                    <input type="text" placeholder="Industry" name="industry" style="width: 220px; font-size: 12px; margin-top: 8px; height: 27px" required>
+                </p>
+                <p style="font-size: 13px; font-family: 'Ubuntu'; font-weight: bold;">
+                    Company Address *
+                    <textarea type="text" placeholder="Short Address" name="company_add" style="width: 220px; font-size: 12px; margin-top: 8px; min-height: 70px; max-height: 70px;" required></textarea>
+                </p>
+                <p style="font-size: 13px; font-family: 'Ubuntu'; font-weight: bold; margin-top: -8px">
+                    Assessor name *
+                    <input type="text" placeholder="Assessor name" name="assessor_name" style="width: 200px; font-size: 12px; margin-top: 8px; height: 27px" required>
+                </p>
+            </div>
+            <div class="float-child" style="width: 50%; float: left; padding: 20px; height: 420px;">
+                <p style="font-size: 13px; font-family: 'Ubuntu'; font-weight: bold;">
+                    Assessor email address  *
+                    <input type="email" placeholder="Assessor email" name="assessor_email_add" style="width: 220px; font-size: 12px; margin-top: 8px; height: 27px;" required>
+                </p>
+                <p style="font-size: 13px; font-family: 'Ubuntu'; font-weight: bold;">
+                    Brief project description *
+                    <textarea type="text" placeholder="Project Details" name="brief_project_desc" style="width: 220px; font-size: 12px; margin-top: 8px; min-height: 70px; max-height: 70px;" required></textarea>
+                </p>
+                <p style="font-size: 13px; font-family: 'Ubuntu'; font-weight: bold;">
+                    Assessment portfolio *</p>
+                <div class="question-box" onchange="form_change()">
+                    <input type="radio" class="question-radio" value="1" style="margin-left: 25px;" name="assessment_portfolio" required="required">
+                    <label class="label-font" style="font-size:12px; font-family: 'Ubuntu';">
+                        Savings/Current account portfolio
+                    </label>
+                    <br>
+                    <input type="radio" class="question-radio" value="2" style="margin-left: 25px; margin-top: -25px;" name="assessment_portfolio" required="required">
+                    <label class="label-font" style="font-size:12px; font-family: 'Ubuntu';">
+                        Loan portfolio
+                    </label><br>
+                </div>
+                <button class="proceed-index-button" type="submit" style="font-size: 12px; margin-left: -120px;"><b>Proceed</b></button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+</body>
+
+</html>

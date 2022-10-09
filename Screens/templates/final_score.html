@@ -1,0 +1,648 @@
+{% extends 'base-figma-1.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+<link href="static/assets/css/style-figma-1.css" rel="stylesheet">
+
+<script>
+    window.onload = function(){
+                    console.log('Inside Function')
+                    var aa = {{aa|safe}}
+                    console.log(aa)
+
+                    var total11 = {{total_avg|safe}}
+                    console.log(total11)
+
+                    const gaugeElement = document.getElementById("gauge").innerText;
+
+                    var fill = document.getElementById("fill");
+                    fill.style.transform = `rotate(${gaugeElement / 2}turn)`;
+
+<!--                   const gaugeElement1 = document.getElementById("gauge1").innerText;-->
+
+<!--                    var fill1 = document.getElementById("fill1");-->
+<!--                    fill1.style.transform = `rotate(${gaugeElement1 / 2}turn)`;-->
+                   }
+
+
+</script>
+
+
+<div class="alt-nav">
+    <div style="position: absolute;
+    left: 11.10%;
+    right: 38.75%;
+    top: 13.80%;
+    bottom: 88.89%;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 28px;
+    /* or 200% */
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #0E88AF;">
+        Scores
+    </div>
+    <div style="position: absolute;
+    height: 26px;
+    left: 7.80%;
+    right: 38.75%;
+    top: 40%;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    /* or 117% */
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    /* Typography/On Surface/High Emphasis */
+    color: rgba(39, 41, 54, 0.85);">
+        <a href="#" onclick="history.back()"><img style="margin-right: -5px;" src="static/assets/img/Icon.png"/></a>
+        Final Score
+    </div>
+</div>
+<body style="background: linear-gradient(3.47deg, #590A42 13.28%, #66A9CD 91.28%);
+position: static;
+width: 1240px;
+overflow-x: hidden;
+height: 750px;">
+{% csrf_token %}
+<style>
+    .gauge {
+      width: 100%;
+      max-width: 250px;
+      font-family: "Roboto", sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #004033;
+      margin-left: 110px;
+    }
+
+    .checked {
+        color: orange;
+    }
+
+    .gauge__body {
+      position: relative;
+      overflow: hidden; /* Comment this line to understand the trick */
+      width: 180px; height: 90px; /* Half circle (overflow) */
+      margin-bottom: -14px; /* bring the numbers up */
+    }
+
+    .gauge__fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 180px; height: 180px; /* full circle! */
+      border-radius: 50%;
+      box-sizing: border-box;
+      border: 25px solid #eee;     /* half gray, */
+      border-bottom-color: green;  /* half azure */
+      border-right-color: green;
+      transform: rotate(0.5turn);
+    }
+
+    .gauge__cover {
+      width: 75%;
+      height: 150%;
+      border-radius: 50%;
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      /* Text */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 25%;
+      box-sizing: border-box;
+    }
+
+    .gauge1 {
+      width: 100%;
+      max-width: 250px;
+      font-family: "Roboto", sans-serif;
+      font-size: 32px;
+      color: #004033;
+      margin-left: 110px;
+    }
+
+    .gauge__body1 {
+      position: relative;
+      overflow: hidden; /* Comment this line to understand the trick */
+      width: 180px; height: 90px; /* Half circle (overflow) */
+      margin-bottom: -14px; /* bring the numbers up */
+    }
+
+    .gauge__fill1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 180px; height: 180px; /* full circle! */
+      border-radius: 50%;
+      box-sizing: border-box;
+      border: 25px solid #eee;     /* half gray, */
+      border-bottom-color: green;  /* half azure */
+      border-right-color: green;
+      transform: rotate(0.5turn);
+    }
+
+    .gauge__cover1 {
+      width: 75%;
+      height: 150%;
+      background: #ffffff;
+      border-radius: 50%;
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      /* Text */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 25%;
+      box-sizing: border-box;
+    }
+</style>
+<h1 style="margin-left: 380px; color: white; width: 1200px; margin-top: 80px; font-family: 'Ubuntu'; font-size: 25px;">Portfolio scoring & final recommendations</h1>
+<div style="margin-top: 45px; width: 450px; margin-left: 110px; float: left;">
+    {% if portfolio_screen == '1' %}
+    <div class="container" style="background-color: rgba(245, 245, 248, 0.7); height: 450px;">
+        <p type="text-center" style="background-color: DodgerBlue; padding: 12px; font:size: 20px;  margin-left: -12px; width:300px; height: 50px; font-family: 'Ubuntu';"><b>Savings / Current accounts portfolio</b></p>
+        <center><label style="margin-top:10px; font-size: 20px; font-family: 'Ubuntu';"><b>Criteria</b></label><br></center>
+<!--        <label ></label><br>-->
+        {% if aa == '1' %}
+            <span style="margin-left: 20px;" class="heading">Assessment parameters</span>
+            <span style="margin-left:110px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+        {% elif aa == '2' %}
+            <span style="margin-left: 20px;" class="heading">Assessment parameters</span>
+            <span style="margin-left:110px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+        {% elif aa == '3' %}
+            <span style="margin-left: 20px;" class="heading">Assessment parameters</span>
+            <span style="margin-left:110px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+        {% else %}
+            <span style="margin-left: 20px;" class="heading">Assessment parameters</span>
+            <span style="margin-left:110px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <br>
+        {% endif %}
+
+        {% if aac == '1' %}
+        <span style="margin-left: 20px;" class="heading">Customer Scoring</span>
+        <span style="margin-left:150px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <br>
+
+        {% elif aac == '2' %}
+        <span style="margin-left: 20px;" class="heading">Customer Scoring</span>
+        <span style="margin-left:150px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <br>
+
+        {% elif aac == '3' %}
+        <span style="margin-left: 20px;" class="heading">Customer Scoring</span>
+        <span style="margin-left:150px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <br>
+
+        {% else %}
+        <span style="margin-left: 20px;" class="heading">Customer Scoring</span>
+        <span style="margin-left:150px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <br>
+        {% endif %}
+
+        {% if aak == '1' %}
+        <span style="margin-left: 20px;" class="heading">Kyc Risk</span>
+        <span style="margin-left:220px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <br>
+
+        {% elif aak == '2' %}
+        <span style="margin-left: 20px;" class="heading">Kyc Risk</span>
+        <span style="margin-left:220px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <br>
+
+        {% elif aak == '3' %}
+        <span style="margin-left: 20px;" class="heading">Kyc Risk</span>
+        <span style="margin-left:220px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <br>
+
+        {% else %}
+        <span style="margin-left: 20px;" class="heading">Kyc Risk</span>
+        <span style="margin-left:220px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <br>
+        {% endif %}
+
+        {% if aar == '1' %}
+        <span style="margin-left: 20px;" class="heading">Regulatory Transformation</span>
+        <span style="margin-left:90px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <br>
+
+        {% elif aak == '2' %}
+        <span style="margin-left: 20px;" class="heading">Regulatory Transformation</span>
+        <span style="margin-left:90px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <span class="fa fa-star "></span>
+        <br>
+
+        {% elif aak == '3' %}
+        <span style="margin-left: 20px;" class="heading">Regulatory Transformation</span>
+        <span style="margin-left:90px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star "></span>
+        <br>
+
+        {% else %}
+        <span style="margin-left: 20px;" class="heading">Regulatory Transformation</span>
+        <span style="margin-left:90px; height: 30px;" class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <br>
+        {% endif %}
+
+        <center><label style="margin-top:20px; font-size: 20px; font-family: 'Ubuntu';"><b>Preparedness Level</b></label><br></center>
+
+        <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+
+        <div class="gauge" id="gauge">
+            <div class="gauge__body" id="body">
+                <div class="gauge__fill" id="fill"></div>
+                <div class="gauge__cover" id="demo">{{total_avg}}/ 4</div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div style="margin-top: -50px; width: 500px; margin-left: 680px; ">
+    <p style="font-size:18px; margin-left: 150px; font-family: 'Ubuntu'; font-weight: 500; color: white;">Section Wise Scores</p>
+    <table class="table table-bordered" style="border-color: white;">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); color: white; text-align: center;">Theme</th>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); color: white; text-align: center;">Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style="color:white;">Assessment parameters</td>
+            {% if aa == '1' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #F63310 ">{{avg_ass_score}}</td>
+            {% elif aa == '2' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #F3891E">{{avg_ass_score}}</td>
+            {% elif aa == '3' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #55FC50 ">{{avg_ass_score}}</td>
+            {% else %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #409F06 " >{{avg_ass_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td style="color:white;">Customer Scoring</td>
+            {% if aac == '1' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #F63310">{{avg_aac_score}}</td>
+            {% elif aac == '2' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #F3891E">{{avg_aac_score}}</td>
+            {% elif aac == '3' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #55FC50">{{avg_aac_score}}</td>
+            {% else %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #409F06">{{avg_aac_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td style="color:white;">Kyc Risk</td>
+            {% if aak == '1' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #F63310">{{avg_aak_score}}</td>
+            {% elif aak == '2' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #F3891E">{{avg_aak_score}}</td>
+            {% elif aak == '3' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #55FC50">{{avg_aak_score}}</td>
+            {% else %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #409F06">{{avg_aak_score}}</td>
+            {% endif %}
+
+        </tr>
+        <tr>
+            <td style="color:white;">Regulatory Transformation</td>
+            {% if aar == '1' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #F63310">{{avg_aar_score}}</td>
+            {% elif aar == '2' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #F3891E">{{avg_aar_score}}</td>
+            {% elif aar == '3' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #55FC50">{{avg_aar_score}}</td>
+            {% else %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #409F06">{{avg_aar_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td style="background-color: rgba(245, 245, 248, 0.3); color: white;"><b>Final Average score</b></td>
+            {% if total_avg >= '4' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #409F06">{{total_avg}}</td>
+            {% elif total_avg >= '3' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #55FC50">{{total_avg}}</td>
+            {% elif total_avg >= '2' %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #F3891E">{{total_avg}}</td>
+            {% else %}
+                <td style="color: black; font-weight: 500; text-align: center; background-color: #F63310">{{total_avg}}</td>
+            {% endif %}
+        </tr>
+        </tbody>
+    </table>
+
+    {% else %}
+        <div class="container" style="background-color:rgba(245, 245, 248, 0.7); height: 450px;">
+            <p type="text-center" style="background-color: DodgerBlue; font:size: 20px; padding: 12px;  margin-left: -12px; width:230px; height: 50px; font-family: 'Ubuntu';"><b>Loan portfolio</b></p>
+            <center><label style="margin-top:10px; font-size: 20px; font-family: 'Ubuntu';"><b>Criteria</b></label><br></center>
+            <!--        <label ></label><br>-->
+            {% if aa == '1' %}
+            <span style="margin-left: 20px;" class="heading">Assessment parameters</span>
+            <span style="margin-left:110px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% elif aa == '2' %}
+            <span style="margin-left: 20px;" class="heading">Assessment parameters</span>
+            <span style="margin-left:110px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% elif aa == '3' %}
+            <span style="margin-left: 20px;" class="heading">Assessment parameters</span>
+            <span style="margin-left:110px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% else %}
+            <span style="margin-left: 20px;" class="heading">Assessment parameters</span>
+            <span style="margin-left:110px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <br>
+            {% endif %}
+
+            {% if aac == '1' %}
+            <span style="margin-left: 20px;" class="heading">Customer Scoring</span>
+            <span style="margin-left:152px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% elif aac == '2' %}
+            <span style="margin-left: 20px;" class="heading">Customer Scoring</span>
+            <span style="margin-left:152px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% elif aac == '3' %}
+            <span style="margin-left: 20px;" class="heading">Customer Scoring</span>
+            <span style="margin-left:152px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% else %}
+            <span style="margin-left: 20px;" class="heading">Customer Scoring</span>
+            <span style="margin-left:152px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <br>
+            {% endif %}
+
+            {% if aak == '1' %}
+            <span style="margin-left: 20px;" class="heading">Kyc Risk</span>
+            <span style="margin-left:220px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% elif aak == '2' %}
+            <span style="margin-left: 20px;" class="heading">Kyc Risk</span>
+            <span style="margin-left:220px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% elif aak == '3' %}
+            <span style="margin-left: 20px;" class="heading">Kyc Risk</span>
+            <span style="margin-left:220px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% else %}
+            <span style="margin-left: 20px;" class="heading">Kyc Risk</span>
+            <span style="margin-left:220px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <br>
+            {% endif %}
+
+            {% if aar == '1' %}
+            <span style="margin-left: 20px;" class="heading">Regulatory Transformation</span>
+            <span style="margin-left:90px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% elif aak == '2' %}
+            <span style="margin-left: 20px;" class="heading">Regulatory Transformation</span>
+            <span style="margin-left:90px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% elif aak == '3' %}
+            <span style="margin-left: 20px;" class="heading">Regulatory Transformation</span>
+            <span style="margin-left:90px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star "></span>
+            <br>
+
+            {% else %}
+            <span style="margin-left: 20px;" class="heading">Regulatory Transformation</span>
+            <span style="margin-left:90px; height: 30px;" class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <br>
+            {% endif %}
+
+            <center><label style="margin-top:20px; font-size: 20px; font-family: 'Ubuntu';"><b>Preparedness Level</b></label><br></center>
+
+            <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js"></script>
+            <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+
+            <div class="gauge" id="gauge1">
+                <div class="gauge__body" id="body1">
+                    <div class="gauge__fill" id="fill1"></div>
+                    <div class="gauge__cover" id="demo1">{{total_avg}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div style="margin-top: -2px; width: 500px; margin-left: 680px; ">
+    <p style="font-size:18px; margin-left: 150px; font-family: 'Ubuntu'; font-weight: 500; color: white;">Section Wise Scores</p>
+    <table class="table table-bordered" style="border-color: white;">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); color: white; text-align: center;">Theme</th>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); color: white; text-align: center;">Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style="color:white;">Assessment parameters</td>
+            {% if aa == '1' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #F63310 ">{{avg_ass_score}}</td>
+            {% elif aa == '2' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #F3891E">{{avg_ass_score}}</td>
+            {% elif aa == '3' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #55FC50 ">{{avg_ass_score}}</td>
+            {% else %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #409F06 " >{{avg_ass_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td style="color:white;">Customer Scoring</td>
+            {% if aac == '1' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #F63310">{{avg_aac_score}}</td>
+            {% elif aac == '2' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #F3891E">{{avg_aac_score}}</td>
+            {% elif aac == '3' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #55FC50">{{avg_aac_score}}</td>
+            {% else %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #409F06">{{avg_aac_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td style="color:white;">Kyc Risk</td>
+            {% if aak == '1' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #F63310">{{avg_aak_score}}</td>
+            {% elif aak == '2' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #F3891E">{{avg_aak_score}}</td>
+            {% elif aak == '3' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #55FC50">{{avg_aak_score}}</td>
+            {% else %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #409F06">{{avg_aak_score}}</td>
+            {% endif %}
+
+        </tr>
+        <tr>
+            <td style="color:white;">Regulatory Transformation</td>
+            {% if aar == '1' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #F63310">{{avg_aar_score}}</td>
+            {% elif aar == '2' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #F3891E">{{avg_aar_score}}</td>
+            {% elif aar == '3' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #55FC50">{{avg_aar_score}}</td>
+            {% else %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #409F06">{{avg_aar_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td style="background-color: rgba(245, 245, 248, 0.3); color: white;"><b>Final Average score</b></td>
+            {% if total_avg >= '4' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #409F06">{{total_avg}}</td>
+            {% elif total_avg >= '3' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #55FC50">{{total_avg}}</td>
+            {% elif total_avg >= '2' %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #F3891E">{{total_avg}}</td>
+            {% else %}
+            <td style="color: black; font-weight: 500; text-align: center; background-color: #F63310">{{total_avg}}</td>
+            {% endif %}
+        </tr>
+        </tbody>
+    </table>
+    {% endif %}
+
+    <div style="width: 400px; font-size: 18px; margin-left: 150px; margin-top: -5px; font-family: 'Ubuntu'; font-weight: 500; color: white;">
+        Final Suggestion
+    </div>
+    <div style="width:500px; height: 150px; background-color: rgba(245, 245, 248, 0.3); margin-left: -2px; margin-top: 10px;">
+        <p id="suggestion-1" style="padding: 20px; width: 490px; font-weight: 400; font-size: 16px; color: #F4F3FA; font-family: 'Ubuntu';">
+            The organization needs to improve on several aspects in terms of its preparedness to expand into the metaverse. It can look into creating a vision or a roadmap first to kick start its readiness.
+        </p>
+        <p id="suggestion-2" style="padding: 50px; width: 490px; font-weight: 500; font-size: 16px; color: black; font-family: 'Ubuntu'; display: none;">
+            The organization needs to improve on several aspects in terms of its preparedness to expand into the metaverse. It can look into creating a vision or a roadmap first to kick start its readiness.
+        </p>
+        <p id="suggestion-3" style="padding: 50px; width: 490px; font-weight: 500; font-size: 16px; color: black; font-family: 'Ubuntu'; display: none;">
+            The organization needs to improve on several aspects in terms of its preparedness to expand into the metaverse. It can look into creating a vision or a roadmap first to kick start its readiness.
+        </p>
+        <p id="suggestion-4" style="padding: 50px; width: 490px; font-weight: 500; font-size: 16px; color: black; font-family: 'Ubuntu'; display: none;">
+            The organization needs to improve on several aspects in terms of its preparedness to expand into the metaverse. It can look into creating a vision or a roadmap first to kick start its readiness.
+        </p>
+    </div>
+</div>
+{% endblock %}
+</body>
+
+</html>

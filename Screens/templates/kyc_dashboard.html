@@ -1,0 +1,484 @@
+{% extends 'base-figma-1.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+<link href="static/assets/css/style-figma-1.css" rel="stylesheet">
+<link href="static/assets/css/table-css.css" rel="stylesheet">
+
+<script>
+    window.onload = function display_score(){
+            console.log('inside display score')
+
+<!--            table 1-->
+            var dao_total_score = {{dao_total_score|safe}}
+            console.log(dao_total_score)
+
+            var ra_total_score = {{ra_total_score|safe}}
+            console.log(ra_total_score)
+
+            var rp_total_score = {{rp_total_score|safe}}
+            console.log(rp_total_score)
+
+            var comp_total_score = {{comp_total_score|safe}}
+            console.log(comp_total_score)
+
+            var aa_av_score = {{aa_av_score|safe}}
+            console.log(aa_av_score)
+
+<!--            table 2-->
+            var daoc_total_score = {{daoc_total_score | safe}}
+            console.log(daoc_total_score)
+
+            var rac_total_score = {{rac_total_score | safe}}
+            console.log(rac_total_score)
+
+            var rpc_total_score = {{rpc_total_score | safe}}
+            console.log(rpc_total_score)
+
+            var compc_total_score = {{compc_total_score | safe}}
+            console.log(compc_total_score)
+
+            var aac_av_score = {{aac_av_score | safe}}
+            console.log(aac_av_score)
+
+<!--            table 3-->
+            var daok_total_score = {{daok_total_score | safe}}
+            console.log(daok_total_score)
+
+            var rak_total_score = {{rak_total_score | safe}}
+            console.log(rak_total_score)
+
+            var rpk_total_score = {{rpk_total_score | safe}}
+            console.log(rpk_total_score)
+
+            var compk_total_score = {{compk_total_score | safe}}
+            console.log(compk_total_score)
+
+            var aak_av_score = {{aak_av_score | safe}}
+            console.log(aak_av_score)
+
+<!--            table 3-->
+            var compr_total_score = {{compr_total_score| safe}}
+            console.log(compr_total_score)
+
+            var cusr_total_score = {{cusr_total_score| safe}}
+            console.log(cusr_total_score)
+
+            var regr_total_score = {{regr_total_score| safe}}
+            console.log(regr_total_score)
+
+            var rar_total_score = {{rar_total_score| safe}}
+            console.log(rar_total_score)
+
+            var aar_av_score = {{aar_av_score| safe}}
+            console.log(aar_av_score)
+    }
+</script>
+
+
+<div class="alt-nav">
+    <div style="position: absolute;
+    left: 11.10%;
+    right: 38.75%;
+    top: 13.80%;
+    bottom: 88.89%;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 28px;
+    /* or 200% */
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #0E88AF;">
+        Scores
+    </div>
+    <div style="position: absolute;
+    height: 26px;
+    left: 7.80%;
+    right: 38.75%;
+    top: 40%;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    /* or 117% */
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    /* Typography/On Surface/High Emphasis */
+    color: rgba(39, 41, 54, 0.85);">
+        <a href="#" onclick="history.back()"><img style="margin-right: -5px;" src="static/assets/img/Icon.png"/></a>
+        KYC Scoring Dashboard
+    </div>
+</div>
+<body style="background: linear-gradient(3.47deg, #590A42 13.28%, #66A9CD 91.28%);
+position: static;
+width: 1240px;
+overflow-x: hidden;
+height:990px;">
+{% csrf_token %}
+<script>
+    function getNum(){
+        window.location.href = "{% url 'final_score' %}"
+        console.log('div clicked ' + i)
+    }
+</script>
+<div style=" height: 600px; margin-bottom: 120px; margin-right: 20px; color: black; margin-top: 110px; float: right; width: 680px;">
+    <div style="float:left; width: 340px; background-color: white; height: 350px; border-style: groove;">
+        <p class="spider-title">Assessment Parameters</p>
+        <div style="margin-left: 20px; margin-top: 25px; width: 295px; height: 295px; text-align: center; font-size: 12px; font-family: 'Ubuntu'; font-weight: 500;">
+            <img style=" margin-left: -20px; width: 330px; height: 245px;" src="media/sample_1.png">
+        </div>
+    </div>
+
+    <div style="border-style: groove; background-color: white;  width: 340px; height: 350px; float:left;">
+        <p class="spider-title">Customer Scoring</p>
+        <div style="margin-left: 20px; margin-top: 25px; width: 295px; height: 295px; text-align: center; font-size: 12px; font-family: 'Ubuntu'; font-weight: 500;">
+            <img style=" margin-left: -20px; width: 330px; height: 245px;" src="media/sample_2.png">
+        </div>
+    </div>
+
+    <div style="float:left; width: 340px; background-color: white; height: 350px; border-style: groove; ">
+        <p class="spider-title">Kyc Risk</p>
+        <div style="margin-left: 20px; margin-top: 25px; width: 295px; height: 295px; text-align: center; font-size: 12px; font-family: 'Ubuntu'; font-weight: 500;">
+            <img style=" margin-left: -20px; width: 330px; height: 245px;" src="media/sample_3.png">
+        </div>
+    </div>
+
+    <div style="border-style: groove; background-color: white;  width: 340px; height: 350px; float:left;">
+        <p class="spider-title">Regulatory Transformation</p>
+        <div style="margin-left: 20px; margin-top: 25px; width: 295px; height: 295px; text-align: center; font-size: 12px; font-family: 'Ubuntu'; font-weight: 500;">
+            <img style=" margin-left: -20px; width: 330px; height: 245px;" src="media/sample_4.png">
+        </div>
+    </div>
+    <div style="margin-top: 120px;">&nbsp;</div>
+    <div style="margin-top: 100px; float: center;">
+        <table class="table table-bordered" style="border-color: white; height: auto; color:white; margin-top: 20px;">
+            <thead class="thead-dark" style="border-color: white;">
+            <tr>
+                <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); width: 50px; font:size: 12px; color: white; text-align: right;">Score</th>
+                <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); font:size: 12px; color: white; text-align: center;">Maturity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">1</td>
+                <td>Low level of maturity: Needs to initiate plans to start their metaverse journey</td>
+            </tr>
+            <tr>
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">2</td>
+                <td>Medium level of maturity: Needs to closely monitor all initiatives</td>
+            </tr>
+            <tr>
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">3</td>
+                <td>High level of maturity: Almost ready, motivate all initiatives towards closure</td>
+            </tr>
+            <tr>
+                <td style="background-color: #087204; color: black; font-weight: 500;">4</td>
+                <td>Highest level of maturity: Ready, recommend initiating metaverse journey</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div style="margin-top: 70px; width: 450px; margin-left: 50px; float: left;">
+    <b style="font-size:20px; color: white; margin-left: 110px; margin-top:10px;">Indicator wise Scoring</b>
+    <table class="table table-bordered" style="border-color: white; color:white; margin-top: 10px; border-radius: 1em;">
+        <thead class="thead-dark" style="border-color: white;">
+        <tr>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); font:size: 12px; color: white; text-align: center;">Assessment Parameter Indicators</th>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); font:size: 12px; color: white; text-align: center;">Maturity(out of 4)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>DAO Support</td>
+            {% if dao_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{dao_total_score}}</td>
+            {% elif dao_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{dao_total_score}}</td>
+            {% elif dao_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{dao_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{dao_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Risk Assessment</td>
+            {% if ra_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{ra_total_score}}</td>
+            {% elif ra_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{ra_total_score}}</td>
+            {% elif ra_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{ra_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{ra_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Risk Parameters</td>
+            {% if rp_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{rp_total_score}}</td>
+            {% elif rp_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{rp_total_score}}</td>
+            {% elif rp_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{rp_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{rp_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Compliance</td>
+            {% if comp_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{comp_total_score}}</td>
+            {% elif comp_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{comp_total_score}}</td>
+            {% elif comp_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{comp_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{comp_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td style="background-color: rgba(245, 245, 248, 0.3); color: white"><b>Final Average score</b></td>
+            {% if aa_av_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{aa_av_score}}</td>
+            {% elif aa_av_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{aa_av_score}}</td>
+            {% elif aa_av_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{aa_av_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{aa_av_score}}</td>
+            {% endif %}
+        </tr>
+        </tbody>
+    </table>
+
+<div style="margin-top: 10px; width: 450px; float: left; ">
+    <table class="table table-bordered" style="border-color: white; color: white;">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); font:size: 12px;">Customer Scoring Indicators</th>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); width: 165px; font:size: 12px;">Maturity(out of 4)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>DAO Support</td>
+            {% if daoc_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{daoc_total_score}}</td>
+            {% elif daoc_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{daoc_total_score}}</td>
+            {% elif daoc_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{daoc_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{daoc_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Risk Assessment</td>
+            {% if rac_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{rac_total_score}}</td>
+            {% elif rac_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{rac_total_score}}</td>
+            {% elif rac_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{rac_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{rac_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Risk Parameters</td>
+            {% if rpc_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{rpc_total_score}}</td>
+            {% elif rpc_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{rpc_total_score}}</td>
+            {% elif rpc_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{rpc_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{rpc_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Compliance</td>
+            {% if compc_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{compc_total_score}}</td>
+            {% elif compc_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{compc_total_score}}</td>
+            {% elif compc_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{compc_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{compc_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td style="background-color: rgba(245, 245, 248, 0.3);"><b>Final Average score</b></td>
+            {% if aac_av_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{aac_av_score}}</td>
+            {% elif aac_av_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{aac_av_score}}</td>
+            {% elif aac_av_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{aac_av_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{aac_av_score}}</td>
+            {% endif %}
+        </tr>
+        </tbody>
+    </table>
+
+<div style="margin-top: 10px; width: 450px; margin-left: 2px; float: left; ">
+    <table class="table table-bordered" style="border-color: white; color: white;">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); font:size: 12px;">KYC Risk Indicators</th>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); width: 167px; font:size: 12px;">Maturity(out of 4)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>DAO Support</td>
+            {% if daok_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{daok_total_score}}</td>
+            {% elif daok_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{daok_total_score}}</td>
+            {% elif daok_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{daok_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{daok_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Risk Assessment</td>
+            {% if rak_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{rak_total_score}}</td>
+            {% elif rak_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{rak_total_score}}</td>
+            {% elif rak_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{rak_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{rak_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Risk Parameters</td>
+            {% if rpk_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{rpk_total_score}}</td>
+            {% elif rpk_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{rpk_total_score}}</td>
+            {% elif rpk_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{rpk_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{rpk_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Compliance</td>
+            {% if compk_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{compk_total_score}}</td>
+            {% elif compk_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{compk_total_score}}</td>
+            {% elif compk_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{compk_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{compk_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td style="background-color: rgba(245, 245, 248, 0.3)"><b>Final Average score</b></td>
+            {% if aak_av_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{aak_av_score}}</td>
+            {% elif aak_av_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{aak_av_score}}</td>
+            {% elif aak_av_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{aak_av_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{aak_av_score}}</td>
+            {% endif %}
+        </tr>
+        </tbody>
+    </table>
+
+<div style="margin-top: 10px; width: 450px; margin-left: 2px; float: left; ">
+    <table class="table table-bordered" style="border-color: white; color: white;">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); font:size: 12px;">Regulatory Transformation Indicators</th>
+            <th scope="col" style="background-color: rgba(245, 245, 248, 0.3); width: 167px; font:size: 12px;">Maturity(out of 4)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Compliance</td>
+            {% if compr_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{compr_total_score}}</td>
+            {% elif compr_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{compr_total_score}}</td>
+            {% elif compr_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{compr_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{compr_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Customer Rereview</td>
+            {% if cusr_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{cusr_total_score}}</td>
+            {% elif cusr_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{cusr_total_score}}</td>
+            {% elif cusr_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{cusr_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{cusr_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Regulatory reporting</td>
+            {% if regr_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{regr_total_score}}</td>
+            {% elif regr_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{regr_total_score}}</td>
+            {% elif regr_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{regr_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{regr_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Risk Assessment</td>
+            {% if rar_total_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{rar_total_score}}</td>
+            {% elif rar_total_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{rar_total_score}}</td>
+            {% elif rar_total_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{rar_total_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{rar_total_score}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td style="background-color: rgba(245, 245, 248, 0.3)"><b>Final Average score</b></td>
+            {% if aar_av_score >= 4 %}
+                <td style="background-color: #087204; color: black; font-weight: 500;">{{aar_av_score}}</td>
+            {% elif aar_av_score >= 3 %}
+                <td style="background-color: #0DD906; color: black; font-weight: 500;">{{aar_av_score}}</td>
+            {% elif aar_av_score >= 2 %}
+                <td style="background-color: #55FC50; color: black; font-weight: 500;">{{aar_av_score}}</td>
+            {% else %}
+                <td style="background-color: #9BFA98; color: black; font-weight: 500;">{{aar_av_score}}</td>
+            {% endif %}
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</div>
+</div>
+    <div style="margin-left:-140px; margin-top: -25px; margin-bottom: 25px">
+        <button class="screen-button"><a style="color:white" onclick="getNum()">Click here for more result</a></button>
+    </div>
+{% endblock %}
+</body>
+
+</html>
